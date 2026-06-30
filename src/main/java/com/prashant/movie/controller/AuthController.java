@@ -1,5 +1,7 @@
 package com.prashant.movie.controller;
 
+import com.prashant.movie.dto.LoginRequest;
+import com.prashant.movie.dto.LoginResponse;
 import com.prashant.movie.dto.RegisterRequest;
 import com.prashant.movie.service.UserService;
 import jakarta.validation.Valid;
@@ -7,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.prashant.movie.dto.LoginResponse;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -26,4 +29,9 @@ public class AuthController {
                 HttpStatus.CREATED
         );
     }
+    @PostMapping("/login")
+public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+
+    return ResponseEntity.ok(userService.login(request));
+}
 }
